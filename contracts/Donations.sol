@@ -24,7 +24,7 @@ contract Donations {
         _;
     }
 
-    function getOwner() public view returns (address) {
+    function getOwner() public view returns (address) { // функция возвращает создателя контракта
         return owner;
     }
 
@@ -32,7 +32,7 @@ contract Donations {
         _to.transfer(amount);
     }
 
-    function totalDonations(address _user) public view returns(uint) {
+    function totalDonations(address _user) public view returns(uint) { // возвращает сумму пожертвований определенного пользователя
         uint amount;
         for (uint64 i; i < donations.length; i++) {
             if (donations[i].sender == _user) {

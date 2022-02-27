@@ -4,12 +4,6 @@ require('solidity-coverage');
 
 const DonationsArtifact = require('./artifacts/contracts/Donations.sol/Donations.json');
 
-task("balance", "Prints an account's balance")
-  .addParam("account", "The account's address")
-  .setAction(async (taskArgs) => {
-  const rawBalance = await hre.ethers.provider.getBalance(taskArgs.account);
-  console.log(hre.ethers.utils.formatEther(rawBalance), "ETH");
-  });
 
 task("donaters", "Returns list of donaters") // выводит список жертвователей
   .addParam("address", "Address of contract")
@@ -36,7 +30,7 @@ task("donaters", "Returns list of donaters") // выводит список же
   else console.log("Donaters list is empty")
   })
 
-task("withdraw", "Withdraws money to a certain address")
+task("withdraw", "Withdraws money to a certain address") // выводит деньги из контракта на определенный адрес
   .addParam("user", "Address of user")
   .addParam("contract", "Address of contract")
   .addParam("amount", "Amount of money in ETH")
@@ -52,7 +46,7 @@ task("withdraw", "Withdraws money to a certain address")
     console.log("Money has been successfully withdrawn!")
   })
 
-task("donate", "Donate money")
+task("donate", "Donate money") // позволяет пожертвовать деньги
   .addParam("address", "Address of contract")
   .addParam("amount", "Amount of money in ETH")
   .setAction(async (taskArgs) => {
@@ -66,7 +60,7 @@ task("donate", "Donate money")
   await txSend.wait();
   })
 
-task("total", "Returns sum of donations by user address")
+task("total", "Returns sum of donations by user address") // возвращает сумму пожертвований определенного пользователя
   .addParam("user", "Address of user")
   .addParam("contract", "Address of contract")
   .setAction(async (taskArgs) => {
@@ -102,9 +96,6 @@ module.exports = {
       url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.ALCHEMY_KEY}`,
       accounts: [process.env.PRIVATE_KEY]
     },
-    // localhost: {
-    //   url: "http://127.0.0.1:8545"
-    // },
     hardhat: {
       chainId: 1337
     }
