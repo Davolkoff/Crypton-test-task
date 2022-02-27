@@ -6,11 +6,11 @@ const DonationsArtifact = require('./artifacts/contracts/Donations.sol/Donations
 
 
 task("donaters", "Returns list of donaters") // выводит список жертвователей
-  .addParam("address", "Address of contract")
+  .addParam("contract", "Address of contract")
   .setAction(async (taskArgs) => {
     const [signer] = await hre.ethers.getSigners();
     const donationsContract = new hre.ethers.Contract(
-      taskArgs.address,
+      taskArgs.contract,
       DonationsArtifact.abi,
       signer
     )
@@ -47,17 +47,18 @@ task("withdraw", "Withdraws money to a certain address") // выводит де�
   })
 
 task("donate", "Donate money") // позволяет пожертвовать деньги
-  .addParam("address", "Address of contract")
+  .addParam("contract", "Address of contract")
   .addParam("amount", "Amount of money in ETH")
   .setAction(async (taskArgs) => {
     const [signer] = await hre.ethers.getSigners();
     const tx = {
-      to: taskArgs.address,
+      to: taskArgs.contract,
       value: hre.ethers.utils.parseEther(taskArgs.amount)
   }
 
   const txSend = await signer.sendTransaction(tx);
   await txSend.wait();
+  console.log("Money donated");
   })
 
 task("total", "Returns sum of donations by user address") // возвращает сумму пожертвований определенного пользователя
