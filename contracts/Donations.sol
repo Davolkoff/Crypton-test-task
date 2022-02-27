@@ -8,7 +8,7 @@ contract Donations {
     struct Donation{ 
         uint amount;
         address sender;
-
+    }
     address owner;
 
     Donation[] donations; // array with information about donations
