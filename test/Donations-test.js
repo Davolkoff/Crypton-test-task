@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-// объединяет в себе все функции
+// combines all functions
 describe("Donations contract", function () {
   let owner;
   let addr1;
@@ -16,7 +16,7 @@ describe("Donations contract", function () {
     await donations.deployed();
   });
 
-  // проверяет первую функцию из конструктора контракта, задающую создателя
+  // checks the first function from the contract constructor specifying the creator
   describe("Deployment", function () { 
 
     it("Should set the right owner", async function () {
@@ -25,7 +25,7 @@ describe("Donations contract", function () {
     });
   });
 
-  // проверяет функции перевода денег
+  // checks money transfer functions
   describe("Transactions", function (){
     it("Should give the ability to send money to a smart contract", async function () {
       const tx = {
@@ -71,7 +71,7 @@ describe("Donations contract", function () {
     });
   });
   
-  // проверяет функции, возвращающие информацию из контракта
+  // checks functions that return information from the contract
   describe("Donations functions", function () {
     it("Should return donations amount by address", async function() {
       const tx = {

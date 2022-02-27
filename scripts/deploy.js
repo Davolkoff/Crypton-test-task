@@ -1,19 +1,18 @@
-// функция для запуска контракта
 const hre = require('hardhat');
 
 async function main() {
     
-    const [signer] = await hre.ethers.getSigners(); //получение первого аккаунта из созданных hardhat
+    const [signer] = await hre.ethers.getSigners(); //getting the first account from the created hardhat
 
-    const Donations = await hre.ethers.getContractFactory("Donations", signer); // получение контракта
-    const donations = await Donations.deploy(); // исполнение контракта
+    const Donations = await hre.ethers.getContractFactory("Donations", signer); // getting a contract
+    const donations = await Donations.deploy(); // contract execution
 
-    await donations.deployed(); // ожидание развертки контракта
+    await donations.deployed(); // waiting for the contract to be deployed
 
-    console.log("Contract address: ", donations.address); // выводит адрес контракта
+    console.log("Contract address: ", donations.address); // outputs the address of the contract
   }
   
-  main() // это нужно для асинхронности
+  main()
     .then(() => process.exit(0))
     .catch((error) => {
       console.error(error);

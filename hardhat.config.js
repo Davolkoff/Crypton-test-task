@@ -5,7 +5,7 @@ require('solidity-coverage');
 const DonationsArtifact = require('./artifacts/contracts/Donations.sol/Donations.json');
 
 
-task("donaters", "Returns list of donaters") // выводит список жертвователей
+task("donaters", "Returns list of donaters")
   .addParam("contract", "Address of contract")
   .setAction(async (taskArgs) => {
     const [signer] = await hre.ethers.getSigners();
@@ -30,7 +30,7 @@ task("donaters", "Returns list of donaters") // выводит список же
   else console.log("Donaters list is empty")
   })
 
-task("withdraw", "Withdraws money to a certain address") // выводит деньги из контракта на определенный адрес
+task("withdraw", "Withdraws money to a certain address")
   .addParam("user", "Address of user")
   .addParam("contract", "Address of contract")
   .addParam("amount", "Amount of money in ETH")
@@ -46,7 +46,7 @@ task("withdraw", "Withdraws money to a certain address") // выводит де�
     console.log("Money has been successfully withdrawn!")
   })
 
-task("donate", "Donate money") // позволяет пожертвовать деньги
+task("donate", "Donate money")
   .addParam("contract", "Address of contract")
   .addParam("amount", "Amount of money in ETH")
   .setAction(async (taskArgs) => {
@@ -61,7 +61,7 @@ task("donate", "Donate money") // позволяет пожертвовать д
   console.log("Money donated");
   })
 
-task("total", "Returns sum of donations by user address") // возвращает сумму пожертвований определенного пользователя
+task("total", "Returns sum of donations by user address")
   .addParam("user", "Address of user")
   .addParam("contract", "Address of contract")
   .setAction(async (taskArgs) => {

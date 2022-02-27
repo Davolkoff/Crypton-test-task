@@ -4,35 +4,40 @@ pragma solidity ^0.8.0;
 import "hardhat/console.sol";
 
 contract Donations {
-    
-    struct Donation{ // тип данных для пожертвований
-        uint amount; // количество пожертвованных денег
-        address sender; // отправитель
-    } 
+    // data type for donations
+    struct Donation{ 
+        uint amount;
+        address sender;
 
-    address owner; // адрес владельца контракта
-    Donation[] donations; // массив с информацией о пожертвованиях
-    
-    bool user_exists_in_base = false; // создание булевой функции для проверки, есть ли пользователь в массиве
+    address owner;
 
-    constructor() { // конструктор для контракта
+    Donation[] donations; // array with information about donations
+    
+    bool user_exists_in_base = false; // to check if there is a user in the database
+
+    // contract constructor
+    constructor() {
         owner = msg.sender;
     }
 
-    modifier requireOwner() { // проверка, является ли человек, вызывющий функцию, владельцем контракта
+    // checks whether the person is the owner of the contract
+    modifier requireOwner() {
         require(owner == msg.sender, "Not an owner");
         _;
     }
 
-    function getOwner() public view returns (address) { // функция возвращает создателя контракта
+    // returns address of contract owner
+    function getOwner() public view returns (address) {
         return owner;
     }
 
-    function withdrawTo(address payable _to, uint amount) public requireOwner { // функция для вывода средств с проверкой на владельца
+    // function for withdrawal of funds with verification of the owner
+    function withdrawTo(address payable _to, uint amount) public requireOwner { 
         _to.transfer(amount);
     }
 
-    function totalDonations(address _user) public view returns(uint) { // возвращает сумму пожертвований определенного пользователя
+    // returns the amount of donations of a certain user
+    function totalDonations(address _user) public view returns(uint) { 
         uint amount;
         for (uint64 i; i < donations.length; i++) {
             if (donations[i].sender == _user) {
@@ -42,18 +47,20 @@ contract Donations {
         return amount;
     }
 
-    function getDonaters() public view returns (address [] memory) { // функция, выводящая людей, пожертвовавших деньги и опционально сумм пожертвований
-        address[] memory donaters = new address[] (donations.length); // массив с информацией о пожертвовавших людях
+    // function that displays people who donated money
+    function getDonaters() public view returns (address [] memory) {
+        address[] memory donaters = new address[] (donations.length);
         for (uint64 i; i < donations.length; i++) {
             donaters[i] = donations[i].sender;
         }
         return donaters;
     }
 
-    receive() external payable{ // функция перевода денег в контракт
+    // the function of transferring money to the contract
+    receive() external payable{ 
         Donation memory newDonation = Donation(msg.value, msg.sender);
 
-        for (uint64 i; i < donations.length; i++){ // проверка, есть ли пользователь в массиве
+        for (uint64 i; i < donations.length; i++){ // checking if there is a user in the array
             if (donations[i].sender == msg.sender){
                 donations[i].amount += msg.value;
                 user_exists_in_base = true;
@@ -61,11 +68,11 @@ contract Donations {
             
         }
 
-        if (!user_exists_in_base){ // если пользователь не найден, добавляется новая ячейка в массив
+        if (!user_exists_in_base){ // if the user is not found, a new cell in the array is added
             donations.push(newDonation);
         }
 
-        user_exists_in_base = false; // возврат к нулю для дальнейших операций
+        user_exists_in_base = false; // return to zero for further operations
     }
 
     
