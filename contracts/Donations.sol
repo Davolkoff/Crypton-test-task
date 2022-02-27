@@ -37,9 +37,7 @@ contract Donations {
         for (uint64 i; i < donations.length; i++) {
             if (donations[i].sender == _user) {
                 amount = donations[i].amount;
-            }
-            
-        
+            } 
         }
         return amount;
     }
