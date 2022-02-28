@@ -4,6 +4,10 @@ This is my first project that I wrote in Js and Solidity. It was written as a te
 
 The project contains a smart contract, tasks for performing the functions prescribed in the smart contract, script to deploy it to rinkeby network and unit tests, that can be run through the solidity coverage plugin.
 
+Run script to deploy contract in Rinkeby:
+```shell
+npx hardhat run scripts/deploy.js
+```
 
 Tasks:
 
