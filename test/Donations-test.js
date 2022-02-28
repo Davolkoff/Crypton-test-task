@@ -50,7 +50,7 @@ describe("Donations contract", function () {
 
       const txSend2 = await addr2.sendTransaction(tx);
       await txSend2.wait();
-      expect(await ethers.provider.getBalance(donations.address)).to.equals(ethers.utils.parseEther('6'))
+      expect(await donations.totalDonations(addr2.address)).to.equals(ethers.utils.parseEther('6'))
     });
   
     it("Should withdraw money from contract", async function() {
