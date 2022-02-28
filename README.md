@@ -76,4 +76,6 @@ npx hardhat total --contract 0x0b450f342c593B2546A8989947920293C89eEd94
 
 Run solidity coverage:
 ```shell
-npx hardhat coverage --network hardhat```
+npx hardhat coverage --network hardhat
+```
+
