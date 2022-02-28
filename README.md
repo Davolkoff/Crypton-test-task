@@ -7,11 +7,11 @@ The project contains a smart contract, tasks for performing the functions prescr
 
 Tasks:
 
-- Donates money from an account whose private key is registered in hardhat.config.js\n
-Use parameter --contract to specify which smart contract to donate to
-Use parameter --amount to specify how much money you want to donate
+- Donates money from an account whose private key is registered in hardhat.config.js
 ```shell
 npx hardhat donate
 ```
+Use parameter --contract to specify which smart contract to donate to
+Use parameter --amount to specify how much money you want to donate
 
 
