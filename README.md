@@ -1,8 +1,9 @@
 # Crypton-test-task
 
-This is my first project that I wrote in Js and Solidity. It was written as a test assignment for admission to an internship at Crypton.
+>This is my first project that I wrote in Js and Solidity. It was written as a test assignment for admission to an internship at Crypton.
 
-The project contains a smart contract, tasks for performing the functions prescribed in the smart contract, script to deploy it to rinkeby network and unit tests, that can be run through the solidity coverage plugin.
+>The project contains a smart contract, tasks for performing the functions prescribed in the smart contract, script to deploy it to rinkeby network and unit tests, that can be run through the solidity coverage plugin.
+
 
 Run script to deploy contract in Rinkeby:
 ```shell
@@ -71,3 +72,7 @@ Example:
 ```shell
 npx hardhat total --contract 0x0b450f342c593B2546A8989947920293C89eEd94
 ```
+
+
+Run solidity coverage:
+``
