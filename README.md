@@ -1,15 +1,17 @@
-# Basic Sample Hardhat Project
+# Crypton-test-task
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+This is my first project that I wrote in Js and Solidity. It was written as a test assignment for admission to an internship at Crypton.
 
-Try running some of the following tasks:
+The project contains a smart contract, tasks for performing the functions prescribed in the smart contract, script to deploy it to rinkeby network and unit tests, that can be run through the solidity coverage plugin.
 
+
+Tasks of smart contract:
+
+- Donates money from an account whose private key is registered in hardhat.config.js
+Use parameter --contract to specify which smart contract to donate to
+Use parameter --amount to specify how much money you want to donate
 ```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
+npx hardhat donate
 ```
+
+
